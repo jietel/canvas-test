@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>recorder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./effects.js"></script>
+    <script src="./canvas.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            width: 375px;
+            height: 667px;
+            background: #000;
+            display: flex;
+        }
+    </style>
+</head>
+
+<body onload="load();">
+    <div class="box">
+        <canvas id="canvas"></canvas>
+        <video id="video" style="padding-left: 1px;"></video>
+    </div>
+    <div>
+        <button onclick="startRecord(6000)">start record</button>
+        <button onclick="stopRecord()">stop record</button>
+        <span id="info"></span>
+    </div>
+</body>
+
+</html>

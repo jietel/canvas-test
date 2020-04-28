@@ -1,0 +1,19 @@
+{
+  "name": "canvas-record",
+  "version": "1.0.1",
+  "description": "",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "node ./src/main.js",
+    "start-nex": "node ./src/main-nex.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "multer": "^1.4.2"
+  }
+}
