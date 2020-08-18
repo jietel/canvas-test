@@ -4,14 +4,16 @@
 <head>
     <title>recorder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./js/effects.js"></script>
-    <script src="./canvas.js"></script>
+    <script src="./js/three/three.min.js"></script>
+    <script src="./js/three/stats.min.js"></script>
+    <script src="./js/three/OrbitControls.js"></script>
+    <script src="./js/three/tween.min.js"></script>
+    <script src="./js/canvas-three.js"></script>
     <style>
         * {
             padding: 0;
             margin: 0;
         }
-
         html,
         body {
             width: 100%;
@@ -27,13 +29,13 @@
     </style>
 </head>
 
-<body onload="load();">
+<body onload="start();">
     <div class="box">
-        <canvas id="canvas"></canvas>
+        <div id="container"></div>
         <video id="video" style="padding-left: 1px;" controls></video>
     </div>
     <div>
-        <button onclick="startRecord(6000)">start record</button>
+        <button onclick="startRecord(30000)">start record</button>
         <button onclick="stopRecord()">stop record</button>
         <span id="info"></span>
     </div>

@@ -7,8 +7,8 @@ function load() {
     canvas = document.getElementById("canvas");
     canvas.width = 375;
     canvas.height = 667;
+    stage = new createjs.Stage(canvas,{});
     ctx = canvas.getContext('2d');
-    stage = new createjs.Stage(canvas);
     image = new Image();
     image.crossOrigin = "Anonymous";
     image.src = "./logo.png";
@@ -23,7 +23,7 @@ function load() {
     }, 300);
 }
 function init() {
-    text = new createjs.Text("WebPE.CN", '600 ' + size + "px Arial", "#777");
+    text = new createjs.Text("NEXNOVO", '600 ' + size + "px Arial", "#777");
     var shadow = new createjs.Shadow("#79A500", 5, 5, 5);
     var width = text.getMeasuredWidth();
 
@@ -183,7 +183,7 @@ function complete() {
 
 function getColors(x, y, xw, xh, colors) {
     var width = text.getMeasuredWidth();
-    var gradient = canvas.getContext('2d').createLinearGradient(x, y, xw, xh);
+    var gradient = ctx.createLinearGradient(x, y, xw, xh);
     for (var i = 0; i < colors.length; i++) {
         gradient.addColorStop(colors[i].offset, colors[i].color);
     }

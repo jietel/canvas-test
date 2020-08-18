@@ -9,10 +9,10 @@
 * 支持帧率合称为mp4
 
 ## 安装
-npm install body-parser --save
-npm install multer --save
-npm install fluent-ffmpeg --save
+*npm install body-parser --save
+*npm install multer --save
+*npm install fluent-ffmpeg --save
 
-或者直接npm install
+*或者直接npm install
 
-下载对应平台的ffmpeg即可运行测试。
+*下载对应平台的ffmpeg即可运行测试。

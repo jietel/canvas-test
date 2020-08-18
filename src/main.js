@@ -36,6 +36,7 @@ app.post('/recorder', upload.single('videoData'), (req, res) => {
     var filename = req.file.filename;
     var buffer = fs.readFileSync(uploadPath + filename);
     var images = String(buffer).split('　');
+    var maxfps = req.body.maxfps || 25;
     fs.mkdirSync(uploadPath + filename + '-temp/');
     Promise.all(images.map((img, idx) => {
         var imgData = decodeBase64Image(img);
@@ -53,15 +54,16 @@ app.post('/recorder', upload.single('videoData'), (req, res) => {
     })).then(() => {
         let duration = req.body.duration ? req.body.duration : 0;
         let inputFps = duration ? 1000 / (duration * 1000 / images.length) : 25;
-        let outputFps = inputFps >= 25 ? 25 : inputFps;
+        let outputFps = inputFps >= maxfps ? maxfps : inputFps;
         let size = req.body.size && (req.body.size).indexOf('x') > 0 ? req.body.size : '384x512';
         console.log('Saved frames:' + images.length, 'duration:' + duration, 'inputFps:' + inputFps, 'outputFps:' + outputFps, 'size:' + size);
-        var proc = new ffmpeg({ source: uploadPath + filename + '-temp/%d.jpeg', nolog: false })
+        var proc = new ffmpeg({ source: uploadPath + filename + '-temp/%d.jpeg', nolog: true })
             .inputFps(inputFps) //录制时实际帧率
             .outputFps(outputFps)  //导出帧率
             .duration(duration)  //最大时间限制
             .withSize(size)
-            .on('end', function () {
+            .on('end', function (err,stdout,stderr) {
+                //console.log('--------------',stdout);
                 deleteTemp(images, filename);
                 res.json({ code: 1, url: '/upload/' + filename + '.mp4' });
             })
